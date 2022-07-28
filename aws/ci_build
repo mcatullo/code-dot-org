@@ -79,6 +79,9 @@ def build
     ChatClient.log "https://github.com/code-dot-org/code-dot-org/commit/#{git_revision}", message_format: 'text', color: 'purple'
     write_build_status rack_env, git_revision_short, :start
 
+    # Ensure updated Gemfile.lock dependencies are installed.
+    RakeUtils.bundle_install
+
     Honeybadger.notify_new_release(rack_env, git_revision)
 
     status = begin
@@ -93,9 +96,6 @@ def build
     rescue => e
       CDO.backtrace e
     end
-
-    # Ensure updated Gemfile.lock dependencies are installed
-    RakeUtils.bundle_install
 
     FileUtils.rm STARTED if File.file?(STARTED)
 
