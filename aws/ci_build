@@ -79,17 +79,6 @@ def build
     ChatClient.log "https://github.com/code-dot-org/code-dot-org/commit/#{git_revision}", message_format: 'text', color: 'purple'
     write_build_status rack_env, git_revision_short, :start
 
-    # Attempt to update Gemfile.lock dependencies; this may fail if our Gemfile
-    # has been changed in a way that requires a full CI build (ie, when we're
-    # updating to a new version of Ruby), in which case we will attempt to
-    # update again after the build.
-    bundle_succeeded = begin
-      RakeUtils.bundle_install
-      true
-    rescue
-      false
-    end
-
     Honeybadger.notify_new_release(rack_env, git_revision)
 
     status = begin
@@ -105,11 +94,8 @@ def build
       CDO.backtrace e
     end
 
-    # Ensure updated Gemfile.lock dependencies are installed, if our pre-build
-    # attempt failed
-    unless bundle_succeeded
-      RakeUtils.bundle_install
-    end
+    # Ensure updated Gemfile.lock dependencies are installed
+    RakeUtils.bundle_install
 
     FileUtils.rm STARTED if File.file?(STARTED)
 
