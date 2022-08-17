@@ -92,6 +92,8 @@ jobs:
       #     CIRCLE_TEST_REPORTS: /home/circleci/test_reports
       #     CIRCLE_ARTIFACTS: /home/circleci/artifacts
       #   run: bundle exec rake circle:seed_ui_test --trace   
+      - name: echo length of sauce user
+        run: echo ${#SAUCE_USERNAME}
       - name: Rake run UI tests
         env: 
           CI: true
