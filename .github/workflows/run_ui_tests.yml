@@ -78,20 +78,20 @@ jobs:
             libraries_s3_directory: libraries_circle/42:-2323
             dashboard_db_reader: \"mysql://readonly@localhost/dashboard_test\"          
             " >> locals.yml        
-      - name: Seed run UI tests
-        env: 
-          CI: true
-          RAILS_ENV: test
-          RACK_ENV: test
-          DISABLE_SPRING: 1           
-          CIRCLE_NODE_INDEX: 1
-          CIRCLE_NODE_TOTAL: 1
-          CIRCLECI: true
-          LD_LIBRARY_PATH: /usr/local/lib
-          CIRCLE_BUILD_NUM: "42:-2323"
-          CIRCLE_TEST_REPORTS: /home/circleci/test_reports
-          CIRCLE_ARTIFACTS: /home/circleci/artifacts
-        run: bundle exec rake circle:seed_ui_test --trace   
+      # - name: Seed run UI tests
+      #   env: 
+      #     CI: true
+      #     RAILS_ENV: test
+      #     RACK_ENV: test
+      #     DISABLE_SPRING: 1           
+      #     CIRCLE_NODE_INDEX: 1
+      #     CIRCLE_NODE_TOTAL: 1
+      #     CIRCLECI: true
+      #     LD_LIBRARY_PATH: /usr/local/lib
+      #     CIRCLE_BUILD_NUM: "42:-2323"
+      #     CIRCLE_TEST_REPORTS: /home/circleci/test_reports
+      #     CIRCLE_ARTIFACTS: /home/circleci/artifacts
+      #   run: bundle exec rake circle:seed_ui_test --trace   
       - name: Rake run UI tests
         env: 
           CI: true
