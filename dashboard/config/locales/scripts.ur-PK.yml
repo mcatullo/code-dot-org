@@ -646,6 +646,8 @@ ur:
           lesson_groups:
             lessonGroup-5:
               display_name: سینڈباکس
+        ai-ethics-2021:
+          description_audience: گریڈز 6-8
         poem-art-2021:
           title: نظم کا فن
         counting-csc-2021:
@@ -952,3 +954,5 @@ ur:
           student_description: اس یونٹ میں ایک سروے ہوتا ہے جب آپ کی کلاس CS ڈسکوریز
             میں یونٹس کے ساتھ ختم ہوتی ہے۔ آپ کا استاد آپ کو بتائے گا کہ یہ سروے کرنے
             کا وقت کب ہے۔
+        soccer:
+          name: فٹ بال

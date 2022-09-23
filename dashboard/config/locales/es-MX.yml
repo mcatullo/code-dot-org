@@ -759,6 +759,7 @@ es-MX:
     try_hour_of_code: "¡Prueba una Hora del Código!"
     store: Tienda
     cookie_notice: Aviso de Cookies
+    view_code: Ve el código
   reference_area:
     title: "¿Necesitas ayuda?"
     subtitle: Mira estos videos y sugerencias
@@ -1469,3 +1470,4 @@ es-MX:
   unit_prefix: Unidad %{n}
   code_org_logo_alt: Inicio de Code.org
   teacher_feedback: Retroalimentación del docente
+  reset_predict_progress_button: Borrar respuesta
