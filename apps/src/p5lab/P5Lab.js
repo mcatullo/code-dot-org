@@ -1392,7 +1392,7 @@ export default class P5Lab {
       callback();
       measure(name, `${name}_start`);
       clearMarks(`${name}_start`);
-      this.spriteTotalCount += this.p5Wrapper.p5.allSprites.length;
+      this.spriteTotalCount += this.p5Wrapper.p5.allSprites?.length;
     } else {
       callback();
     }
