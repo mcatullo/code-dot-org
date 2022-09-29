@@ -1256,6 +1256,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@blockly/continuous-toolbox@^2.0.40":
+  version "2.0.40"
+  resolved "https://registry.yarnpkg.com/@blockly/continuous-toolbox/-/continuous-toolbox-2.0.40.tgz#8fea15dc3f31c7be1479a3a243445e37587c768a"
+  integrity sha512-QN4GG+1OD4ZO2lz/AK8doTtBH4zZmDOjhw7lSxX1AfOOsPASQ/1GhR4/J6WUXFTOC/tIzC2Yss4aF1BvPI94Fw==
+
 "@blockly/field-grid-dropdown@^1.0.41":
   version "1.0.41"
   resolved "https://registry.yarnpkg.com/@blockly/field-grid-dropdown/-/field-grid-dropdown-1.0.41.tgz#6c18e74b6f9c13f3b43ad7d203fc7adac35b191a"

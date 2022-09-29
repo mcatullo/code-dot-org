@@ -467,7 +467,8 @@ function initializeBlocklyWrapper(blocklyInstance) {
       },
       plugins: {
         blockDragger: ScrollBlockDragger,
-        metricsManager: CdoMetricsManager
+        metricsManager: CdoMetricsManager,
+        ...opt_options.plugins
       },
       renderer: 'cdo_renderer'
     };

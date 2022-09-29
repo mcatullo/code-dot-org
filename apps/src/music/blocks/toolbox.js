@@ -86,6 +86,8 @@ export const createMusicToolbox = library => {
   // Currently only supports 1 group
   const group = library.groups[0];
   for (let folder of group.folders) {
+    //let folder = group.folders[0];
+
     let category = {
       kind: 'category',
       name: folder.name,
@@ -97,6 +99,8 @@ export const createMusicToolbox = library => {
     };
 
     for (let sound of folder.sounds) {
+      //let sound = folder.sounds[0];
+
       category.contents.push({
         kind: 'block',
         type: 'play_sound',
@@ -117,7 +121,10 @@ export const createMusicToolbox = library => {
     }
 
     // Add to samples category
-    toolbox.contents[0].contents.push(category);
+    //toolbox.contents[0].contents.push(category.contents);
+    const dest = toolbox.contents[0].contents;
+    const src = category.contents;
+    dest.push.apply(dest, src);
   }
 
   return toolbox;

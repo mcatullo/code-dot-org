@@ -7,9 +7,14 @@ import {InitSound, GetCurrentAudioTime, PlaySound, StopSound} from './sound';
 import CustomMarshalingInterpreter from '../lib/tools/jsinterpreter/CustomMarshalingInterpreter';
 import {parseElement as parseXmlElement} from '../xml';
 import queryString from 'query-string';
-import {baseToolbox, createMusicToolbox} from '@cdo/apps/music/blocks/toolbox';
+import {createMusicToolbox} from '@cdo/apps/music/blocks/toolbox';
 import Tabs from './Tabs';
 import Timeline from './Timeline';
+import {
+  ContinuousToolbox,
+  ContinuousFlyout,
+  ContinuousMetrics
+} from '@blockly/continuous-toolbox';
 
 const baseUrl = 'https://cdo-dev-music-prototype.s3.amazonaws.com/';
 
@@ -152,9 +157,9 @@ class MusicView extends React.Component {
       window.visualViewport.addEventListener('scroll', this.resizeListener);
     }
 
-    this.initBlockly();
-
     setInterval(this.updateTimer, 1000 / 30);
+
+    this.initBlockly();
 
     this.loadLibrary().then(library => {
       this.setState({library});
@@ -167,13 +172,50 @@ class MusicView extends React.Component {
           });
         })
         .flat(2);
-      this.workspace.updateToolbox(createMusicToolbox(library));
+      //this.workspace.updateToolbox(createMusicToolbox(library));
+
+      const container = document.getElementById('blocklyDiv');
+
+      this.workspace = Blockly.inject(container, {
+        // Toolbox will be programmatically generated once music manifest is loaded
+        toolbox: createMusicToolbox(library),
+        grid: {spacing: 20, length: 0, colour: '#444', snap: true},
+        plugins: {
+          toolbox: ContinuousToolbox,
+          flyoutsVerticalToolbox: ContinuousFlyout,
+          metricsManager: ContinuousMetrics
+        }
+        //theme: {componentStyles: {workspaceBackgroundColour: '#222'}}
+      });
+
+      this.resizeBlockly();
+
+      const xml = parseXmlElement(
+        '<xml><block type="when_run" deletable="false" x="30" y="30"></block><block type="when_trigger" deletable="false" x="30" y="170"></block></xml>'
+      );
+      Blockly.Xml.domToBlockSpace(Blockly.mainBlockSpace, xml);
+
+      Blockly.addChangeListener(
+        Blockly.mainBlockSpace,
+        this.onBlockSpaceChange
+      );
+
+      this.workspace.registerButtonCallback('createVariableHandler', button => {
+        Blockly.Variables.createVariableButtonHandler(
+          button.getTargetWorkspace(),
+          null,
+          null
+        );
+      });
+
+      //this.initBlockly();
+
       InitSound(soundList);
     });
   }
 
   componentDidUpdate() {
-    this.resizeBlockly();
+    //this.resizeBlockly();
   }
 
   updateTimer = () => {
@@ -591,14 +633,22 @@ class MusicView extends React.Component {
       );
     };
 
+    /*
     const container = document.getElementById('blocklyDiv');
+
 
     this.workspace = Blockly.inject(container, {
       // Toolbox will be programmatically generated once music manifest is loaded
       toolbox: baseToolbox,
-      grid: {spacing: 20, length: 0, colour: '#444', snap: true}
+      grid: {spacing: 20, length: 0, colour: '#444', snap: true},
+      plugins: {
+        toolbox: ContinuousToolbox,
+        flyoutsVerticalToolbox: ContinuousFlyout,
+        metricsManager: ContinuousMetrics
+      }
       //theme: {componentStyles: {workspaceBackgroundColour: '#222'}}
     });
+
 
     this.resizeBlockly();
 
@@ -616,6 +666,7 @@ class MusicView extends React.Component {
         null
       );
     });
+    */
   };
 
   onBlockSpaceChange = () => {
