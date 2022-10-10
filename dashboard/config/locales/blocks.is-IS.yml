@@ -2,6 +2,26 @@
 is:
   data:
     blocks:
+      AmysBlocks_setPromptWithChoices:
+        text: biðja notanda {QUESTION} um breytu {VAR} með valkosti {A}{B}{C}
+      BadGuys_makeNewBadGuysSprite:
+        text: aalab búa til nýja {ANIMATION_NAME} veru á stað {LOCATION}
+      BadGuys_setSizeAll_dropdown:
+        options:
+          SIZE:
+            '0.50': extra small
+            '0.75': small
+            '1.00': miðlungs
+            '2.00': large
+            '3.00': extra large
+      BadGuys_setSize_dropdown:
+        options:
+          SIZE:
+            '0.50': extra small
+            '0.75': small
+            '1.00': miðlungs
+            '2.00': large
+            '3.00': extra large
       Dancelab_alternateMoves:
         text: "{GROUP} skipta hverja {N} takta \nmilli {MOVE1} og {MOVE2}"
         options:
@@ -1022,6 +1042,12 @@ is:
         text: er hægt að draga
       gamelab_edgesDisplace:
         text: brúnir hindra {SPRITE} að hreyfast
+      gamelab_everyInterval:
+        text: 'á {N} {UNIT} fresti '
+        options:
+          UNIT:
+            '"seconds"': sekúndur
+            '"frames"': rammar
       gamelab_getAllSprites:
         text: allir kvikar
       gamelab_getProp:
@@ -1180,6 +1206,12 @@ is:
             '90': niður
             '180': vinstri
             '270': upp
+      gamelab_makeSpritesWithSize:
+        options:
+          SIZE:
+            '30': small
+            '50': miðlungs
+            '100': large
       gamelab_mirrorSprite:
         text: "{SPRITE} snýr {DIRECTION}"
         options:

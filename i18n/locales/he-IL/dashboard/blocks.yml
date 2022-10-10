@@ -2,6 +2,24 @@
 he:
   data:
     blocks:
+      BadGuys_makeNewBadGuysSprite:
+        text: צור דמות {ANIMATION_NAME} חדשה ב {LOCATION}
+      BadGuys_setSizeAll_dropdown:
+        options:
+          SIZE:
+            '0.50': extra small
+            '0.75': small
+            '1.00': זמן בינוני
+            '2.00': large
+            '3.00': extra large
+      BadGuys_setSize_dropdown:
+        options:
+          SIZE:
+            '0.50': extra small
+            '0.75': small
+            '1.00': זמן בינוני
+            '2.00': large
+            '3.00': extra large
       Dancelab_alternateMoves:
         text: "{GROUP} מחליפים כל {N} תיבות \nבין {MOVE1} ל{MOVE2}"
         options:
@@ -1041,6 +1059,11 @@ he:
         text: ניתנת לגרירה
       gamelab_edgesDisplace:
         text: המסגרת חוסמת את {SPRITE} מלזוז
+      gamelab_everyInterval:
+        text: 'כל {N} {UNIT} '
+        options:
+          UNIT:
+            '"seconds"': שניות
       gamelab_getAllSprites:
         text: כל הדמויות
       gamelab_getProp:
@@ -1184,6 +1207,12 @@ he:
             '90': למטה
             '180': שמאלה
             '270': למעלה
+      gamelab_makeSpritesWithSize:
+        options:
+          SIZE:
+            '30': small
+            '50': זמן בינוני
+            '100': large
       gamelab_mirrorSprite:
         text: "{SPRITE} פונה ל{DIRECTION}"
         options:

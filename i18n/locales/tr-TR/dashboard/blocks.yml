@@ -2,6 +2,26 @@
 tr:
   data:
     blocks:
+      AmysBlocks_setPromptWithChoices:
+        text: "{VAR} değişkeni için {A}{B}{C} seçenekleriyle {QUESTION} sorusunu kullanıcıya sor"
+      BadGuys_makeNewBadGuysSprite:
+        text: yeni yapmak {ANIMATION_NAME} sprite at {LOCATION}
+      BadGuys_setSizeAll_dropdown:
+        options:
+          SIZE:
+            '0.50': çok küçük
+            '0.75': Küçük
+            '1.00': orta
+            '2.00': Büyük
+            '3.00': extra large
+      BadGuys_setSize_dropdown:
+        options:
+          SIZE:
+            '0.50': çok küçük
+            '0.75': Küçük
+            '1.00': orta
+            '2.00': Büyük
+            '3.00': extra large
       Dancelab_alternateMoves:
         text: "{MOVE1} ve {MOVE2} arasındaki her {N} ölçümünde  {GROUP} değiştirilir"
         options:
@@ -9,8 +29,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -62,8 +82,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -121,8 +141,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -144,8 +164,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -298,8 +318,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -325,8 +345,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -451,8 +471,8 @@ tr:
           COSTUME:
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -574,8 +594,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -641,8 +661,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -676,8 +696,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -702,8 +722,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -718,8 +738,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -742,8 +762,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -776,8 +796,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -820,8 +840,8 @@ tr:
             sprites: tüm
             '"ALIEN"': tüm uzaylılar
             '"BEAR"': ayılar
-            '"CAT"': tüm kediler
-            '"DOG"': tüm köpekler
+            '"CAT"': kediler
+            '"DOG"': köpekler
             '"DUCK"': ördekler
             '"FROG"': kurbağalar
             '"MOOSE"': tüm geyikler
@@ -994,6 +1014,12 @@ tr:
         text: çizgi çiz {COLOR}  {LOC1}  {LOC2}
       gamelab_edgesDisplace:
         text: kenarları blok {SPRITE} hareket
+      gamelab_everyInterval:
+        text: 'her {N} {UNIT}’de bir '
+        options:
+          UNIT:
+            '"seconds"': saniye
+            '"frames"': çerçeveler
       gamelab_followingTargets:
         text: takip eden hedefler
       gamelab_getAllSprites:
@@ -1140,6 +1166,13 @@ tr:
             '90': aşağı
             '180': sol
             '270': yukarı
+      gamelab_makeSpritesWithSize:
+        text: "{NUM} yeni {SIZE} {COSTUME} hareketli nesne yapın"
+        options:
+          SIZE:
+            '30': Küçük
+            '50': orta
+            '100': Büyük
       gamelab_mirrorSprite:
         text: "{SPRITE} yüz {DIRECTION}"
         options:
@@ -1357,6 +1390,37 @@ tr:
         text: "{SPRITE}, {SPEECH} der"
       gamelab_spriteSayTime:
         text: "{SPRITE}{NUM}saniye{TEXT1}der"
+      gamelab_spriteThink:
+        text: "{SPRITE} şunu düşünür: {SPEECH}"
+      gamelab_spriteThinkTime:
+        text: "{SPRITE}{NUM}saniye{TEXT1}düşünür"
+      gamelab_spriteThink_fables2:
+        text: "{SPRITE} şunu düşünür: {THOUGHT}"
+        options:
+          THOUGHT:
+            '"Hmm..."': Hmmm...
+            '"Time to make friends with the sheep."': Koyunla arkadaş olma zamanı.
+            '"She''ll never recognize me now."': Şimdi beni asla tanıyamayacak.
+            '"This costume keeps me warm."': Bu kostüm beni sıcak tutuyor.
+            '"I am actually a wolf."': Ben aslında kurtum.
+      gamelab_spriteThink_fables3:
+        text: "{SPRITE} şunu düşünür: {THOUGHT}"
+        options:
+          THOUGHT:
+            '"Hmm..."': Hmmm...
+            '"I''m feeling sleepy."': Uykum var.
+            '"No one could ever beat me."': Beni asla kimse yenemez.
+            '"I''ve done this race before."': Bu yarışa daha önce girdim.
+            '"My feet are bigger than Turtle''s feet."': Ayaklarım kaplumbağanın ayaklarından daha büyük.
+      gamelab_spriteThink_fables4:
+        text: "{SPRITE} şunu düşünür: {THOUGHT}"
+        options:
+          THOUGHT:
+            '"Hmm..."': Hmmm...
+            '"I''m so hungry."': Çok açım.
+            '"I''m a visitor in this town."': Bu kasabayı ziyarete geldim.
+            '"If we share, we''ll all have something to eat. "': Paylaşırsak herkesin yiyecek bir şeyleri olur.
+            '"I''ll trick everyone into giving me their food."': Herkesi kandırıp bana yemek vermelerini sağlayacağım.
       gamelab_startAvoiding:
         text: "{SPRITE} {TARGET}'den kaçınmaya başlar"
       gamelab_startFollowing:
