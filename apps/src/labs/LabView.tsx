@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 // ingest appOptions from backend into AppOptions type
-const LabView: FunctionComponent = () => {
+const LabView = () => {
   return <div>Hello from lab lab</div>
 }
 

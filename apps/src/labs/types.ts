@@ -18,25 +18,50 @@ class Droplet implements Editor {
 
 interface Lab {
   editor: Editor,
-  level: Level
+  hasConsole: boolean,
+  view: ViewType,
+  layout: LabLayout
 }
 
 class Applab implements Lab {
-  editor: Editor
+  editor: Editor;
+  hasConsole = true;
+  view: AppLabView;
+  layout: LabLayout;
 
   constructor() {
-    this.editor = new Droplet()
+    this.editor = new Droplet();
+    this.view = 'app';
+    this.layout = {leftPanel: ['view'], rightPanel:['instructions', 'editor', 'console']};
   }
 }
 
 class Javalab implements Lab {
-  editor: Editor
+  editor: Editor;
+  hasConsole = true;
+  view: JavalabView;
+  layout: LabLayout;
 
-  constructor() {
-    this.editor = new CodeMirror()
+  constructor(viewType: JavalabView) {
+    this.editor = new CodeMirror();
+    this.view = viewType;
+    this.layout = {leftPanel: ['instructions', 'view'], rightPanel:['editor', 'console']};
   }
 }
 
-interface Level {
-  
+type ViewType = JavalabView | AppLabView;
+
+type JavalabView = 'neighborhood' | 'console' | 'theater';
+
+type AppLabView = 'app';
+
+interface AppOptions {
+
 }
+
+interface LabLayout {
+  leftPanel: Array<LabComponent>;
+  rightPanel: Array<LabComponent>;
+}
+
+type LabComponent = 'editor' | 'console' | 'view' | 'instructions';
