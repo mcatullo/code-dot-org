@@ -16,7 +16,7 @@ export class Applab implements Lab {
 
   constructor() {
     this.editor = 'Droplet';
-    this.view = 'app';
+    this.view = 'applab';
     this.layout = {leftPanel: ['view'], rightPanel:['instructions', 'editor', 'console']};
   }
 }
@@ -38,7 +38,7 @@ export type ViewType = JavalabView | AppLabView;
 
 export type JavalabView = 'neighborhood' | 'console' | 'theater';
 
-export type AppLabView = 'app';
+export type AppLabView = 'applab';
 
 interface AppOptions {
 

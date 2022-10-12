@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CodeMirror = () => {
-  return <div>This is code mirror!</div>
+  return <div className='editor'>This is code mirror!</div>
 }
 
 export default CodeMirror;

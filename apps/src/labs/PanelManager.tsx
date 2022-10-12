@@ -1,6 +1,5 @@
 import React from 'react';
 import Panel from './Panel';
-import moduleStyles from './labs.module.scss';
 
 interface PanelManagerProps {
   leftPanels: Array<JSX.Element>;
@@ -8,14 +7,13 @@ interface PanelManagerProps {
 }
 
 const PanelManager = ({leftPanels, rightPanels}: PanelManagerProps) => {
-  console.log(moduleStyles.panelContainer);
-  return <div className={moduleStyles.panelContainer}>
-    <div>
+  return <div className='panelContainer'>
+    <div className='panelColumn leftPanel'>
       {leftPanels.map((panel, index) => {
         return <Panel panelContents={panel} width={'100%'} height={'100%'} key={`leftPanel-${index}`}/> 
       })}
     </div>
-    <div>
+    <div className='panelColumn'>
       {rightPanels.map((panel, index) => {
         return <Panel panelContents={panel} width={'100%'} height={'100%'} key={`rightPanel-${index}`} /> 
       })}
