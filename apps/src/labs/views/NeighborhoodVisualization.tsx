@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CodeMirror = () => {
+const NeighborhoodVisualization = () => {
   return <div>Neighborhood</div>
 }
 
-export default CodeMirror;
+export default NeighborhoodVisualization;

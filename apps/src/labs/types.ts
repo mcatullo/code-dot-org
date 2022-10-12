@@ -1,67 +1,92 @@
 
+export type Editor = 'CodeMirror' | 'Droplet';
 
-interface Editor {
-  run: () => String
-}
-
-class CodeMirror implements Editor {
-  run() {
-    return 'codemirror'
-  }
-}
-
-class Droplet implements Editor {
-  run() {
-    return 'droplet'
-  }
-}
-
-interface Lab {
+export interface Lab {
   editor: Editor,
   hasConsole: boolean,
   view: ViewType,
   layout: LabLayout
 }
 
-class Applab implements Lab {
+export class Applab implements Lab {
   editor: Editor;
   hasConsole = true;
   view: AppLabView;
   layout: LabLayout;
 
   constructor() {
-    this.editor = new Droplet();
+    this.editor = 'Droplet';
     this.view = 'app';
     this.layout = {leftPanel: ['view'], rightPanel:['instructions', 'editor', 'console']};
   }
 }
 
-class Javalab implements Lab {
+export class Javalab implements Lab {
   editor: Editor;
   hasConsole = true;
   view: JavalabView;
   layout: LabLayout;
 
   constructor(viewType: JavalabView) {
-    this.editor = new CodeMirror();
+    this.editor = 'CodeMirror';
     this.view = viewType;
     this.layout = {leftPanel: ['instructions', 'view'], rightPanel:['editor', 'console']};
   }
 }
 
-type ViewType = JavalabView | AppLabView;
+export type ViewType = JavalabView | AppLabView;
 
-type JavalabView = 'neighborhood' | 'console' | 'theater';
+export type JavalabView = 'neighborhood' | 'console' | 'theater';
 
-type AppLabView = 'app';
+export type AppLabView = 'app';
 
 interface AppOptions {
 
 }
 
-interface LabLayout {
+export interface LabLayout {
   leftPanel: Array<LabComponent>;
   rightPanel: Array<LabComponent>;
 }
 
-type LabComponent = 'editor' | 'console' | 'view' | 'instructions';
+export type LabComponent = 'editor' | 'console' | 'view' | 'instructions';
+
+export type Level = AppLabLevel | JavaLabLevel;
+
+export interface AppLabLevel extends CommonLevelProperties {
+  type: 'Applab'
+}
+
+export interface JavaLabLevel extends CommonLevelProperties {
+  type: 'Javalab';
+  csaViewMode: JavalabView;
+}
+
+export interface CommonLevelProperties {
+  name: string;
+  published: boolean;
+  longInstructions: string;
+  miniRubric: boolean;
+  startSources: {
+    [filename: string]: {text: String, isVisible: boolean, isValidation: boolean | undefined}
+  };
+  submittable: boolean;
+}
+
+export interface RawLevel {
+  properties: LevelProperties;
+  name: string;
+  published: boolean;
+  type: 'Javalab' | 'Applab';
+}
+
+export interface LevelProperties {
+  encrypted: 'true' | 'false';
+  long_instructions: string;
+  csa_view_mode: 'console' | 'neighborhood' | 'theater' | undefined;
+  mini_rubric: 'true' | 'false';
+  start_sources: {
+    [filename: string]: {text: String, isVisible: boolean, isValidation: boolean | undefined}
+  };
+  submittable: 'true' | 'false';
+}

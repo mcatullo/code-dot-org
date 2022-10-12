@@ -1,7 +1,12 @@
 import React from 'react';
+const SafeMarkdown = require('../templates/SafeMarkdown');
 
-const Instructions = () => {
-  return <div>These are the instructions!</div>
+interface InstructionsProps {
+  instructions: string
+}
+
+const Instructions = ({instructions}: InstructionsProps) => {
+  return <SafeMarkdown markdown={instructions} />
 }
 
 export default Instructions;
