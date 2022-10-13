@@ -1,7 +1,10 @@
 import React from 'react';
 
 const ApplabVisualization = () => {
-  return <div>App Lab</div>
+  return <div>
+    
+    <div>App Lab</div>
+  </div>
 }
 
 export default ApplabVisualization;

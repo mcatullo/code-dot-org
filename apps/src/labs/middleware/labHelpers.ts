@@ -23,9 +23,12 @@ export function convertLevel(rawLevel: RawLevel): Level {
       csaViewMode: csaViewMode
     }
   } else {
+
     return {
       ...commonLevelProperties,
-      type: rawLevel.type
+      type: rawLevel.type,
+      designModeAtStart: convertStringBooleanToBoolean(rawLevel.properties.design_mode_at_start),
+      hideDesignMode: convertStringBooleanToBoolean(rawLevel.properties.hide_design_mode)
     }
   }
 }
@@ -39,6 +42,6 @@ export function getLabForLevel(level: Level): Lab {
   }
 }
 
-function convertStringBooleanToBoolean(stringBoolen: 'true' | 'false') {
-  return stringBoolen === 'true';
+function convertStringBooleanToBoolean(stringBoolean: 'true' | 'false' | undefined) {
+  return stringBoolean === 'true';
 }

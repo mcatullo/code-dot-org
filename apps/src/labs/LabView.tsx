@@ -7,7 +7,7 @@ import NeighborhoodVisualization from './views/NeighborhoodVisualization';
 import PanelManager from './PanelManager';
 import { Lab, Level, LabComponent } from './types';
 import './labs.scss';
-import {generateLayoutComponents} from './LayoutManager';
+import {generateLayoutComponents} from './LabManager';
 
 interface LabViewProps {
   lab: Lab,

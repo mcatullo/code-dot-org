@@ -54,7 +54,9 @@ export type LabComponent = 'editor' | 'console' | 'view' | 'instructions';
 export type Level = AppLabLevel | JavaLabLevel;
 
 export interface AppLabLevel extends CommonLevelProperties {
-  type: 'Applab'
+  type: 'Applab';
+  designModeAtStart: boolean;
+  hideDesignMode: boolean;
 }
 
 export interface JavaLabLevel extends CommonLevelProperties {
@@ -81,12 +83,16 @@ export interface RawLevel {
 }
 
 export interface LevelProperties {
-  encrypted: 'true' | 'false';
+  encrypted: trueFalseString;
   long_instructions: string;
   csa_view_mode: 'console' | 'neighborhood' | 'theater' | undefined;
-  mini_rubric: 'true' | 'false';
+  mini_rubric: trueFalseString;
   start_sources: {
     [filename: string]: {text: String, isVisible: boolean, isValidation: boolean | undefined}
   };
-  submittable: 'true' | 'false';
+  submittable: trueFalseString;
+  design_mode_at_start: trueFalseString | undefined;
+  hide_design_mode: trueFalseString | undefined;
 }
+
+type trueFalseString = 'true' | 'false';
