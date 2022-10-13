@@ -1,22 +1,13 @@
 import React from 'react';
 import PanelManager from './PanelManager';
-import {Lab, Level} from './types';
 import './labs.scss';
-import {generateLayoutComponents} from './LabManager';
 
 interface LabViewProps {
-  lab: Lab;
-  level: Level;
+  leftPanels: Array<JSX.Element>;
+  rightPanels: Array<JSX.Element>;
 }
 
-const LabView = ({lab, level}: LabViewProps) => {
-  const leftPanels = generateLayoutComponents(lab.layout.leftPanel, lab, level);
-  const rightPanels = generateLayoutComponents(
-    lab.layout.rightPanel,
-    lab,
-    level
-  );
-
+const LabView = ({leftPanels, rightPanels}: LabViewProps) => {
   return <PanelManager leftPanels={leftPanels} rightPanels={rightPanels} />;
 };
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {getStore} from '../../../../code-studio/redux';
-import LabView from '../../../../labs/LabView';
+import {getStore} from '@cdo/apps/redux';
 import {
   convertLevel,
   getLabForLevel
 } from '../../../../labs/middleware/labHelpers';
 import getScriptData from '../../../../util/getScriptData';
+import initLab from '../../../../labs/LabManager';
 
 $(document).ready(function() {
   const level = getScriptData('level');
@@ -15,11 +15,10 @@ $(document).ready(function() {
   const lab = getLabForLevel(convertedLevel);
   // const appOptions = getScriptData('appOptions');
   // console.log(appOptions);
+  const labView = initLab(lab, level);
 
   ReactDOM.render(
-    <Provider store={getStore()}>
-      <LabView lab={lab} level={convertedLevel} />
-    </Provider>,
+    <Provider store={getStore()}>{labView}</Provider>,
     document.getElementById('lab-container')
   );
 });

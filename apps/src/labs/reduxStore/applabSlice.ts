@@ -14,10 +14,12 @@ export const applabSlice = createSlice({
   name: 'applabV2',
   initialState: initialState,
   reducers: {
-    changeMode: (state, action: PayloadAction<ApplabMode>) => {
+    setMode: (state, action: PayloadAction<ApplabMode>) => {
       state.currentMode = action.payload;
     }
   }
 });
+
+export const {setMode} = applabSlice.actions;
 
 export default applabSlice.reducer;
