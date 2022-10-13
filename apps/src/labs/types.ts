@@ -1,11 +1,10 @@
-
 export type Editor = 'CodeMirror' | 'Droplet';
 
 export interface Lab {
-  editor: Editor,
-  hasConsole: boolean,
-  view: ViewType,
-  layout: LabLayout
+  editor: Editor;
+  hasConsole: boolean;
+  view: ViewType;
+  layout: LabLayout;
 }
 
 export class Applab implements Lab {
@@ -17,7 +16,10 @@ export class Applab implements Lab {
   constructor() {
     this.editor = 'Droplet';
     this.view = 'applab';
-    this.layout = {leftPanel: ['view'], rightPanel:['instructions', 'editor', 'console']};
+    this.layout = {
+      leftPanel: ['view'],
+      rightPanel: ['instructions', 'editor', 'console']
+    };
   }
 }
 
@@ -30,7 +32,10 @@ export class Javalab implements Lab {
   constructor(viewType: JavalabView) {
     this.editor = 'CodeMirror';
     this.view = viewType;
-    this.layout = {leftPanel: ['instructions', 'view'], rightPanel:['editor', 'console']};
+    this.layout = {
+      leftPanel: ['instructions', 'view'],
+      rightPanel: ['editor', 'console']
+    };
   }
 }
 
@@ -39,10 +44,6 @@ export type ViewType = JavalabView | AppLabView;
 export type JavalabView = 'neighborhood' | 'console' | 'theater';
 
 export type AppLabView = 'applab';
-
-interface AppOptions {
-
-}
 
 export interface LabLayout {
   leftPanel: Array<LabComponent>;
@@ -70,7 +71,11 @@ export interface CommonLevelProperties {
   longInstructions: string;
   miniRubric: boolean;
   startSources: {
-    [filename: string]: {text: String, isVisible: boolean, isValidation: boolean | undefined}
+    [filename: string]: {
+      text: String;
+      isVisible: boolean;
+      isValidation: boolean | undefined;
+    };
   };
   submittable: boolean;
 }
@@ -88,7 +93,11 @@ export interface LevelProperties {
   csa_view_mode: 'console' | 'neighborhood' | 'theater' | undefined;
   mini_rubric: trueFalseString;
   start_sources: {
-    [filename: string]: {text: String, isVisible: boolean, isValidation: boolean | undefined}
+    [filename: string]: {
+      text: String;
+      isVisible: boolean;
+      isValidation: boolean | undefined;
+    };
   };
   submittable: trueFalseString;
   design_mode_at_start: trueFalseString | undefined;

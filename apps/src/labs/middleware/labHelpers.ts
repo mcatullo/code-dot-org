@@ -1,4 +1,12 @@
-import { RawLevel, Level, CommonLevelProperties, JavalabView, Lab, Applab, Javalab } from "../types";
+import {
+  RawLevel,
+  Level,
+  CommonLevelProperties,
+  JavalabView,
+  Lab,
+  Applab,
+  Javalab
+} from '../types';
 
 export function convertLevel(rawLevel: RawLevel): Level {
   console.log(rawLevel);
@@ -9,8 +17,8 @@ export function convertLevel(rawLevel: RawLevel): Level {
     miniRubric: convertStringBooleanToBoolean(rawLevel.properties.mini_rubric),
     startSources: rawLevel.properties.start_sources,
     submittable: convertStringBooleanToBoolean(rawLevel.properties.submittable)
-  }
-  if (rawLevel.type == 'Javalab') {
+  };
+  if (rawLevel.type === 'Javalab') {
     let csaViewMode: JavalabView;
     if (rawLevel.properties.csa_view_mode === undefined) {
       csaViewMode = 'console';
@@ -21,20 +29,23 @@ export function convertLevel(rawLevel: RawLevel): Level {
       ...commonLevelProperties,
       type: rawLevel.type,
       csaViewMode: csaViewMode
-    }
+    };
   } else {
-
     return {
       ...commonLevelProperties,
       type: rawLevel.type,
-      designModeAtStart: convertStringBooleanToBoolean(rawLevel.properties.design_mode_at_start),
-      hideDesignMode: convertStringBooleanToBoolean(rawLevel.properties.hide_design_mode)
-    }
+      designModeAtStart: convertStringBooleanToBoolean(
+        rawLevel.properties.design_mode_at_start
+      ),
+      hideDesignMode: convertStringBooleanToBoolean(
+        rawLevel.properties.hide_design_mode
+      )
+    };
   }
 }
 
 export function getLabForLevel(level: Level): Lab {
-  switch(level.type) {
+  switch (level.type) {
     case 'Applab':
       return new Applab();
     case 'Javalab':
@@ -42,6 +53,8 @@ export function getLabForLevel(level: Level): Lab {
   }
 }
 
-function convertStringBooleanToBoolean(stringBoolean: 'true' | 'false' | undefined) {
+function convertStringBooleanToBoolean(
+  stringBoolean: 'true' | 'false' | undefined
+) {
   return stringBoolean === 'true';
 }
