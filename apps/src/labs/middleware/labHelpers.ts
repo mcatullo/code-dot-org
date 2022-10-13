@@ -9,7 +9,6 @@ import {
 } from '../types';
 
 export function convertLevel(rawLevel: RawLevel): Level {
-  console.log(rawLevel);
   const commonLevelProperties: CommonLevelProperties = {
     name: rawLevel.name,
     published: rawLevel.published,

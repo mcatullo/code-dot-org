@@ -15,7 +15,7 @@ $(document).ready(function() {
   const lab = getLabForLevel(convertedLevel);
   // const appOptions = getScriptData('appOptions');
   // console.log(appOptions);
-  const labView = initLab(lab, level);
+  const labView = initLab(lab, convertedLevel);
 
   ReactDOM.render(
     <Provider store={getStore()}>{labView}</Provider>,
