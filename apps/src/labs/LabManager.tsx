@@ -6,13 +6,14 @@ import NeighborhoodVisualization from './views/NeighborhoodVisualization';
 import Console from './Console';
 import TheaterVisualization from './views/TheaterVisualization';
 import ApplabVisualization from './views/ApplabVisualization';
-import applabReducer from './reduxStore/applabSlice';
+import applabReducer, { setMode } from './reduxStore/applabSlice';
 import LabView from './LabView';
 import ApplabEditor from './editors/ApplabEditor';
-const {registerReducers} = require('../redux');
+const {getStore, registerReducers} = require('../redux');
 
 export default function init(lab: Lab, level: Level) {
   registerReduxSlices();
+  initializeState(level);
   const leftPanels = generateLayoutComponents(lab.layout.leftPanel, lab, level);
   const rightPanels = generateLayoutComponents(
     lab.layout.rightPanel,
@@ -22,7 +23,15 @@ export default function init(lab: Lab, level: Level) {
   return <LabView leftPanels={leftPanels} rightPanels={rightPanels} />;
 }
 
-export function generateLayoutComponents(
+function initializeState(level: Level) {
+  if (level.type === 'Applab') {
+    if (level.designModeAtStart) {
+      getStore().dispatch(setMode('design'));
+    }
+  }
+}
+
+function generateLayoutComponents(
   panelList: Array<LabComponent>,
   lab: Lab,
   level: Level
