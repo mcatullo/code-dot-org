@@ -1,12 +1,11 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {ApplabState} from '../reduxStore/applabSlice';
 import DataEditor from './DataEditor';
 import DesignEditor from './DesignEditor';
 import Droplet from './Droplet';
 
 const ApplabEditor = () => {
-  const currentMode = useSelector((state: ApplabState) => state.currentMode);
+  const currentMode = useSelector((state: any) => state.applabV2.currentMode);
 
   let editor: JSX.Element;
 
@@ -18,7 +17,7 @@ const ApplabEditor = () => {
     editor = <DataEditor />;
   }
 
-  return {editor};
+  return editor;
 };
 
 export default ApplabEditor;

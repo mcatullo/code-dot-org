@@ -1,7 +1,6 @@
 import {Lab, Level, LabComponent} from './types';
 import CodeMirror from './editors/CodeMirror';
 import React from 'react';
-import Droplet from './editors/Droplet';
 import Instructions from './Instructions';
 import NeighborhoodVisualization from './views/NeighborhoodVisualization';
 import Console from './Console';
@@ -9,6 +8,7 @@ import TheaterVisualization from './views/TheaterVisualization';
 import ApplabVisualization from './views/ApplabVisualization';
 import applabReducer from './reduxStore/applabSlice';
 import LabView from './LabView';
+import ApplabEditor from './editors/ApplabEditor';
 const {registerReducers} = require('../redux');
 
 export default function init(lab: Lab, level: Level) {
@@ -34,7 +34,7 @@ export function generateLayoutComponents(
         if (lab.editor === 'CodeMirror') {
           components.push(<CodeMirror />);
         } else {
-          components.push(<Droplet />);
+          components.push(<ApplabEditor />);
         }
         break;
       case 'console':
@@ -61,5 +61,5 @@ export function generateLayoutComponents(
 }
 
 function registerReduxSlices() {
-  registerReducers({applabReducer});
+  registerReducers({applabV2: applabReducer});
 }
