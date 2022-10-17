@@ -6,7 +6,7 @@ import NeighborhoodVisualization from './views/NeighborhoodVisualization';
 import Console from './Console';
 import TheaterVisualization from './views/TheaterVisualization';
 import ApplabVisualization from './views/ApplabVisualization';
-import applabReducer, { setMode } from './reduxStore/applabSlice';
+import applabReducer, {setMode} from './reduxStore/applabSlice';
 import LabView from './LabView';
 import ApplabEditor from './editors/ApplabEditor';
 const {getStore, registerReducers} = require('../redux');

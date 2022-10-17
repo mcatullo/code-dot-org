@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import DataEditor from './DataEditor';
 import DesignEditor from './DesignEditor';
-import Droplet from './Droplet';
+import Droplet from '../droplet/Droplet';
 
 const ApplabEditor = () => {
   const currentMode = useSelector((state: any) => state.applabV2.currentMode);
