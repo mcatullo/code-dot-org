@@ -21,7 +21,7 @@ const PanelManager = ({leftPanels, rightPanels}: PanelManagerProps) => {
           );
         })}
       </div>
-      <div className="panelColumn">
+      <div className="panelColumn rightPanel">
         {rightPanels.map((panel, index) => {
           return (
             <Panel

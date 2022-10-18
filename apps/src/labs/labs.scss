@@ -1,3 +1,7 @@
+.container {
+  width: 95%;
+}
+
 .panel {
   border: 1px solid black;
   padding: 5px;
@@ -9,14 +13,23 @@
 }
 
 .panelColumn {
-  width: 500px;
   height: 100%;
 }
 
 .leftPanel {
+  width: 800px;
   padding-right: 15px;
+}
+
+.rightPanel {
+  width: 100%;
 }
 
 .editor {
   height: 800px;
+}
+
+.instructions {
+  height: 400px;
+  overflow-y: scroll;
 }

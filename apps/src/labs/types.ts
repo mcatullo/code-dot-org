@@ -105,3 +105,8 @@ export interface LevelProperties {
 }
 
 type trueFalseString = 'true' | 'false';
+
+export interface EditorWrapper {
+  getEditorContents(): string;
+  setEditorContents(contents: string): void;
+}

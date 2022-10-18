@@ -6,7 +6,11 @@ interface InstructionsProps {
 }
 
 const Instructions = ({instructions}: InstructionsProps) => {
-  return <SafeMarkdown markdown={instructions} />;
+  return (
+    <div className="instructions">
+      <SafeMarkdown markdown={instructions} />
+    </div>
+  );
 };
 
 export default Instructions;
