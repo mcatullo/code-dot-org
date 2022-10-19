@@ -11,8 +11,13 @@ class DropletWrapper implements EditorWrapper {
   getEditorContents(): string {
     return this.dropletInstance.editor.getCode();
   }
+
   setEditorContents(contents: string): void {
     this.dropletInstance.editor.setCode(contents);
+  }
+
+  getEditor(): Droplet {
+    return this.dropletInstance;
   }
 }
 

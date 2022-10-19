@@ -442,6 +442,7 @@ pt:
       teach: Ensinar
       about: Sobre
       legal_privacy: Política de Privacidade
+      legal_cookie_notice: Aviso sobre Cookies
       legal_tos: Termos de Serviço
     user:
       classroom: Página inicial do professor
@@ -1442,3 +1443,5 @@ pt:
         bloqueado
       forbidden: O usuário não pode atualizar o status bloqueável do aluno
   reset_predict_progress_button: Excluir resposta
+  pixelation:
+    binary: Binário

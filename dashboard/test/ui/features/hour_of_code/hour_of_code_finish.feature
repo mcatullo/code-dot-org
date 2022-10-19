@@ -18,7 +18,7 @@ Scenario: Completing Minecraft HoC should go to certificate page and generate a 
   And I wait to see element with ID "uitest-thanks"
 
 Scenario: Flappy customized dashboard certificate pages
-  Given I am on "http://studio.code.org/congrats?enableExperiments=studioCertificate"
+  Given I am on "http://studio.code.org/congrats"
   And I wait until element "#uitest-certificate" is visible
 
   When I am on "http://code.org/api/hour/finish/flappy"
@@ -40,8 +40,24 @@ Scenario: Flappy customized dashboard certificate pages
   And I wait until current URL contains "/print_certificates/"
   Then I wait to see an image "/certificate_images/"
 
+Scenario: Pegasus share page preserves certificate when redirecting
+  # Set up a customized certificate
+  Given I am on "http://code.org/api/hour/finish/mc"
+  And I wait until current URL contains "/congrats"
+  And I wait to see element with ID "uitest-certificate"
+  And I type "Robo Coder" into "#name"
+  And I press "button:contains(Submit)" using jQuery
+  And I wait to see element with ID "uitest-thanks"
+
+  # Verify that the old certificate share url will redirect to the new one,
+  # preserving the custom certificate image
+  When I navigate to the pegasus certificate share page
+  And I wait until current URL contains "http://studio.code.org/certificates"
+  And I wait to see an image "/certificate_images/"
+  And I see custom certificate image with name "Robo Coder" and course "mc"
+
 Scenario: Oceans uncustomized dashboard certificate pages
-  Given I am on "http://studio.code.org/congrats?enableExperiments=studioCertificate"
+  Given I am on "http://studio.code.org/congrats"
   And I wait until element "#uitest-certificate" is visible
 
   When I am on "http://code.org/api/hour/finish/oceans"
@@ -59,10 +75,10 @@ Scenario: Oceans uncustomized dashboard certificate pages
   Then I wait to see an image "/images/oceans_hoc_certificate.png"
 
 Scenario: Course A 2017 uncustomized dashboard certificate pages
-  Given I am on "http://studio.code.org/congrats?enableExperiments=studioCertificate"
+  Given I am on "http://studio.code.org/congrats"
   And I wait until element "#uitest-certificate" is visible
 
-  When I am on "http://code.org/congrats/coursea-2017?enableExperiments=studioCertificate"
+  When I am on "http://code.org/congrats/coursea-2017"
   And I wait until current URL contains "http://studio.code.org/congrats"
   And I wait to see element with ID "uitest-certificate"
   Then the href of selector ".social-print-link" contains "/print_certificates/"
@@ -76,23 +92,17 @@ Scenario: Course A 2017 uncustomized dashboard certificate pages
   And I wait until current URL contains "/print_certificates/"
   Then I wait to see an image "/certificate_images/"
 
-Scenario: blank certificate
-  When I am on "http://code.org/certificates/blank?enableExperiments=studioCertificate"
-  And I wait until current URL contains "http://studio.code.org/certificates/blank"
-
-  Then I wait to see an image "/images/hour_of_code_certificate.jpg"
-
 @eyes
 Scenario: congrats certificate pages
-  Given I am on "http://studio.code.org/congrats?enableExperiments=studioCertificate"
+  Given I am on "http://studio.code.org/congrats"
   And I wait until element "#uitest-certificate" is visible
-  And element "#uitest-certificate.show-studio-certificate" is visible
+  And element "#uitest-certificate" is visible
   And I open my eyes to test "congrats certificate pages"
 
   When I am on "http://code.org/api/hour/finish/flappy"
   And I wait until current URL contains "/congrats"
   And I wait to see element with ID "uitest-certificate"
-  And element "#uitest-certificate.show-studio-certificate" is visible
+  And element "#uitest-certificate" is visible
   And I wait for image "#uitest-certificate img" to load
   And I see no difference for "uncustomized flappy certificate"
 
@@ -104,7 +114,7 @@ Scenario: congrats certificate pages
   When I am on "http://code.org/api/hour/finish/oceans"
   And I wait until current URL contains "/congrats"
   And I wait to see element with ID "uitest-certificate"
-  And element "#uitest-certificate.show-studio-certificate" is visible
+  And element "#uitest-certificate" is visible
   And I wait for image "#uitest-certificate img" to load
   And I see no difference for "uncustomized oceans certificate"
 
@@ -113,10 +123,10 @@ Scenario: congrats certificate pages
   And I wait to see element with ID "uitest-thanks"
   And I see no difference for "customized oceans certificate"
 
-  When I am on "http://code.org/congrats/coursea-2017?enableExperiments=studioCertificate"
+  When I am on "http://code.org/congrats/coursea-2017"
   And I wait until current URL contains "http://studio.code.org/congrats"
   And I wait to see element with ID "uitest-certificate"
-  And element "#uitest-certificate.show-studio-certificate" is visible
+  And element "#uitest-certificate" is visible
   And I wait for image "#uitest-certificate img" to load
   And I see no difference for "uncustomized Course A 2017 certificate"
 
@@ -125,10 +135,10 @@ Scenario: congrats certificate pages
   And I wait to see element with ID "uitest-thanks"
   And I see no difference for "customized Course A 2017 certificate"
 
-  When I am on "http://code.org/congrats/accelerated?enableExperiments=studioCertificate"
+  When I am on "http://code.org/congrats/accelerated"
   And I wait until current URL contains "http://studio.code.org/congrats"
   And I wait to see element with ID "uitest-certificate"
-  And element "#uitest-certificate.show-studio-certificate" is visible
+  And element "#uitest-certificate" is visible
   And I wait for image "#uitest-certificate img" to load
   And I see no difference for "uncustomized 20-hour certificate"
 

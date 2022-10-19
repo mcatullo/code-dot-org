@@ -376,6 +376,7 @@ pt:
       teach: "Ensinar"
       about: "Sobre"
       legal_privacy: "Política de Privacidade"
+      legal_cookie_notice: "Aviso sobre Cookies"
       legal_tos: "Termos de Serviço"
     user:
       classroom: 'Página inicial do professor'
@@ -1134,3 +1135,5 @@ pt:
       cannot_view_locked_answers: "Não é possível visualizar as respostas com o item bloqueado"
       forbidden: "O usuário não pode atualizar o status bloqueável do aluno"
   reset_predict_progress_button: "Excluir resposta"
+  pixelation:
+    binary: "Binário"
