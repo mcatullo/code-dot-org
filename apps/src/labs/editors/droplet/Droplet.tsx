@@ -4,7 +4,6 @@ require('../../../../lib/ace/src-noconflict/ace');
 require('../../../../lib/ace/src-noconflict/mode-javascript');
 require('../../../../lib/ace/src-noconflict/ext-language_tools');
 require('../../../../lib/ace/src-noconflict/theme-chrome');
-//const droplet = require('../../../lib/droplet/droplet-full');
 import '../../../../lib/droplet/droplet.min.css';
 
 import React, {useEffect} from 'react';

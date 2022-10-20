@@ -1,4 +1,4 @@
-import {Lab, Level, LabComponent} from './types';
+import {Lab, Level, LabComponent, RawLevel} from './types';
 import CodeMirror from './editors/codemirror/CodeMirror';
 import React from 'react';
 import Instructions from './Instructions';
@@ -7,20 +7,28 @@ import Console from './Console';
 import TheaterVisualization from './views/TheaterVisualization';
 import ApplabVisualization from './views/ApplabVisualization';
 import applabReducer, {setMode} from './reduxStore/applabSlice';
+import javalabReducer from './reduxStore/javalabSlice';
 import LabView from './LabView';
 import ApplabEditor from './editors/ApplabEditor';
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
 import {DropletWrapper} from './editors/droplet/DropletWrapper';
+import {convertLevel, getLabForLevel} from './middleware/labHelpers';
 const {getStore, registerReducers} = require('../redux');
 
-export default function init(lab: Lab, level: Level) {
+export default function init(level: RawLevel) {
+  const convertedLevel = convertLevel(level);
+  const lab = getLabForLevel(convertedLevel);
   registerReduxSlices();
-  initializeState(level);
-  const leftPanels = generateLayoutComponents(lab.layout.leftPanel, lab, level);
+  initializeState(convertedLevel);
+  const leftPanels = generateLayoutComponents(
+    lab.layout.leftPanel,
+    lab,
+    convertedLevel
+  );
   const rightPanels = generateLayoutComponents(
     lab.layout.rightPanel,
     lab,
-    level
+    convertedLevel
   );
   return <LabView leftPanels={leftPanels} rightPanels={rightPanels} />;
 }
@@ -72,5 +80,5 @@ function generateLayoutComponents(
 }
 
 function registerReduxSlices() {
-  registerReducers({applabV2: applabReducer});
+  registerReducers({applabV2: applabReducer, javalabV2: javalabReducer});
 }
