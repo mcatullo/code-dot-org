@@ -1,5 +1,5 @@
 import {Lab, Level, LabComponent} from './types';
-import CodeMirror from './editors/CodeMirror';
+import CodeMirror from './editors/codemirror/CodeMirror';
 import React from 'react';
 import Instructions from './Instructions';
 import NeighborhoodVisualization from './views/NeighborhoodVisualization';
@@ -9,6 +9,8 @@ import ApplabVisualization from './views/ApplabVisualization';
 import applabReducer, {setMode} from './reduxStore/applabSlice';
 import LabView from './LabView';
 import ApplabEditor from './editors/ApplabEditor';
+import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
+import {DropletWrapper} from './editors/droplet/DropletWrapper';
 const {getStore, registerReducers} = require('../redux');
 
 export default function init(lab: Lab, level: Level) {
@@ -40,10 +42,10 @@ function generateLayoutComponents(
   panelList.forEach((panel, index) => {
     switch (panel) {
       case 'editor':
-        if (lab.editor === 'CodeMirror') {
+        if (lab.editor instanceof CodeMirrorWrapper) {
           components.push(<CodeMirror />);
-        } else {
-          components.push(<ApplabEditor />);
+        } else if (lab.editor instanceof DropletWrapper) {
+          components.push(<ApplabEditor dropletWrapper={lab.editor} />);
         }
         break;
       case 'console':

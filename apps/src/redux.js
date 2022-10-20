@@ -74,8 +74,6 @@ if (IN_STORYBOOK || IN_UNIT_TEST) {
 export function getStore() {
   if (!reduxStore) {
     reduxStore = createStoreWithReducers();
-    console.log('just got redux store');
-    console.log(reduxStore);
     if (experiments.isEnabled('reduxGlobalStore')) {
       // Expose our store globally, to make debugging easier
       window.reduxStore = reduxStore;

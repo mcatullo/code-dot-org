@@ -1,32 +1,26 @@
-import {EditorWrapper} from '../types';
-const droplet = require('../../../lib/droplet/droplet-full');
+const droplet = require('../../../../lib/droplet/droplet-full');
 
-class DropletWrapper implements EditorWrapper {
-  dropletInstance: Droplet;
-
-  constructor() {
-    this.dropletInstance = new Droplet();
-  }
-
-  getEditorContents(): string {
-    return this.dropletInstance.editor.getCode();
-  }
-
-  setEditorContents(contents: string): void {
-    this.dropletInstance.editor.setCode(contents);
-  }
-
-  getEditor(): Droplet {
-    return this.dropletInstance;
-  }
-}
-
-class Droplet {
+export class DropletWrapper {
   container: HTMLElement;
   editor: any; // TODO: wrap droplet.Editor in a type?
 
   constructor() {
     this.container = document.createElement('div');
+  }
+
+  getEditor(): any {
+    if (!this.editor) {
+      this.setEditor();
+    }
+    return this.editor;
+  }
+
+  getEditorContents(): string {
+    return this.editor.getCode();
+  }
+
+  setEditorContents(contents: string): void {
+    this.editor.setCode(contents);
   }
 
   setEditor() {
