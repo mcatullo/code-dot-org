@@ -1,7 +1,16 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 
 const Console = () => {
-  return <div>This is a console!</div>;
+  const logs = useSelector((state: any) => state.labs.consoleLogs);
+
+  return (
+    <div>
+      {logs.forEach((log: any) => {
+        <p>{log}</p>;
+      })}
+    </div>
+  );
 };
 
 export default Console;

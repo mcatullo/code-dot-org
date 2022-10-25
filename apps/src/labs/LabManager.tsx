@@ -8,6 +8,7 @@ import TheaterVisualization from './views/TheaterVisualization';
 import ApplabVisualization from './views/ApplabVisualization';
 import applabReducer, {setMode} from './reduxStore/applabSlice';
 import javalabReducer from './reduxStore/javalabSlice';
+import commonReducer from './reduxStore/commonSlice';
 import LabView from './LabView';
 import ApplabEditor from './editors/ApplabEditor';
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
@@ -80,5 +81,9 @@ function generateLayoutComponents(
 }
 
 function registerReduxSlices() {
-  registerReducers({applabV2: applabReducer, javalabV2: javalabReducer});
+  registerReducers({
+    applabV2: applabReducer,
+    javalabV2: javalabReducer,
+    labs: commonReducer
+  });
 }
