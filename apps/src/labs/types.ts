@@ -1,5 +1,6 @@
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
 import {DropletWrapper} from './editors/droplet/DropletWrapper';
+import JavaRunner from './runners/javaRunner';
 
 export type Editor = CodeMirrorWrapper | DropletWrapper;
 
@@ -9,6 +10,7 @@ export interface Lab {
   view: ViewType;
   layout: LabLayout;
   type: AppType;
+  onRun: () => void;
 }
 
 export class Applab implements Lab {
@@ -17,6 +19,7 @@ export class Applab implements Lab {
   view: AppLabView;
   layout: LabLayout;
   type: AppType;
+  onRun: () => void;
 
   constructor() {
     this.editor = new DropletWrapper();
@@ -26,6 +29,7 @@ export class Applab implements Lab {
       rightPanel: ['instructions', 'editor', 'console']
     };
     this.type = 'Applab';
+    this.onRun = () => console.log('running');
   }
 }
 
@@ -35,6 +39,8 @@ export class Javalab implements Lab {
   view: JavalabView;
   layout: LabLayout;
   type: AppType;
+  javaRunner: JavaRunner;
+  onRun: () => void;
 
   constructor(viewType: JavalabView) {
     this.editor = new CodeMirrorWrapper();
@@ -44,6 +50,12 @@ export class Javalab implements Lab {
       rightPanel: ['editor', 'console']
     };
     this.type = 'Javalab';
+    this.javaRunner = new JavaRunner();
+    this.onRun = this.runButtonClick;
+  }
+
+  runButtonClick() {
+    this.javaRunner.run();
   }
 }
 
