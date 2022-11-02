@@ -1,9 +1,12 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {setMode} from '../reduxStore/applabSlice';
+import {ReduxStore} from '../types';
 
 const ApplabVisualization = () => {
-  const currentMode = useSelector((state: any) => state.applabV2.currentMode);
+  const currentMode = useSelector(
+    (state: ReduxStore) => state.applabV2.currentMode
+  );
   const dispatch = useDispatch();
 
   return (

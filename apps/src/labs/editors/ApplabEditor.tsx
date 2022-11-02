@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {ReduxStore} from '../types';
 import DataEditor from './DataEditor';
 import DesignEditor from './DesignEditor';
 import Droplet from './droplet/Droplet';
@@ -10,7 +11,9 @@ interface ApplabEditorProps {
 }
 
 const ApplabEditor = ({dropletWrapper}: ApplabEditorProps) => {
-  const currentMode = useSelector((state: any) => state.applabV2.currentMode);
+  const currentMode = useSelector(
+    (state: ReduxStore) => state.applabV2.currentMode
+  );
 
   let editor: JSX.Element;
 

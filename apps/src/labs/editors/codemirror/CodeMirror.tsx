@@ -5,10 +5,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setSourceText} from '../../reduxStore/javalabSlice';
 import {EditorState, Transaction} from '@codemirror/state';
 import {editorSetup} from './editorSetup';
+import {ReduxStore} from '../../types';
 
 const CodeMirror = () => {
   const dispatch = useDispatch();
-  const sources = useSelector((state: any) => state.javalabV2.sources);
+  const sources = useSelector((state: ReduxStore) => state.javalabV2.sources);
   const codeMirrorInstance = useRef<HTMLDivElement>(null);
 
   let editorInstance: EditorView;

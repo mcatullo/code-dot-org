@@ -1,5 +1,6 @@
 import React, {MouseEventHandler} from 'react';
 import {useSelector} from 'react-redux';
+import {ReduxStore} from '../types';
 
 interface ButtonProps {
   onRun: MouseEventHandler<HTMLButtonElement>;
@@ -9,7 +10,7 @@ interface ButtonProps {
 }
 
 const RunButton = ({onRun, onStop, runText, stopText}: ButtonProps) => {
-  const isRunning = useSelector((state: any) => state.labs.isRunning);
+  const isRunning = useSelector((state: ReduxStore) => state.labs.isRunning);
 
   return (
     <button onClick={isRunning ? onStop : onRun} type="button">

@@ -1,5 +1,8 @@
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
 import {DropletWrapper} from './editors/droplet/DropletWrapper';
+import {ApplabState} from './reduxStore/applabSlice';
+import {CommonState} from './reduxStore/commonSlice';
+import {JavalabState} from './reduxStore/javalabSlice';
 import JavaRunner from './runners/JavaRunner';
 
 export type Editor = CodeMirrorWrapper | DropletWrapper;
@@ -36,7 +39,7 @@ export class Applab implements Lab {
       onStop: () => console.log('stopping'),
       runText: 'run',
       stopText: 'stop'
-    }
+    };
     this.controlButtons = ['run'];
   }
 }
@@ -159,4 +162,10 @@ interface RunButton {
   onStop: () => void;
   runText: string;
   stopText: string;
+}
+
+export interface ReduxStore {
+  applabV2: ApplabState;
+  javalabV2: JavalabState;
+  labs: CommonState;
 }
