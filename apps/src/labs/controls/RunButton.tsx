@@ -13,7 +13,7 @@ const RunButton = ({onRun, onStop, runText, stopText}: ButtonProps) => {
 
   return (
     <button onClick={isRunning ? onStop : onRun} type="button">
-      {isRunning ? runText : stopText}
+      {isRunning ? stopText : runText}
     </button>
   );
 };

@@ -26,6 +26,10 @@ export const commonSlice = createSlice({
   }
 });
 
-export const {appendConsoleLog, resetConsoleLogs} = commonSlice.actions;
+export const {
+  appendConsoleLog,
+  resetConsoleLogs,
+  setIsRunning
+} = commonSlice.actions;
 
 export default commonSlice.reducer;

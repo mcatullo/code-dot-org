@@ -6,8 +6,8 @@ const Console = () => {
 
   return (
     <div>
-      {logs.forEach((log: any) => {
-        <p>{log}</p>;
+      {logs.map((log: any, index: number) => {
+        return <p key={index}>{log}</p>;
       })}
     </div>
   );

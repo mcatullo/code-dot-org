@@ -1,6 +1,6 @@
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
 import {DropletWrapper} from './editors/droplet/DropletWrapper';
-import JavaRunner from './runners/javaRunner';
+import JavaRunner from './runners/JavaRunner';
 
 export type Editor = CodeMirrorWrapper | DropletWrapper;
 
@@ -10,7 +10,8 @@ export interface Lab {
   view: ViewType;
   layout: LabLayout;
   type: AppType;
-  onRun: () => void;
+  runButton: RunButton;
+  controlButtons: Array<ControlButton>;
 }
 
 export class Applab implements Lab {
@@ -19,17 +20,24 @@ export class Applab implements Lab {
   view: AppLabView;
   layout: LabLayout;
   type: AppType;
-  onRun: () => void;
+  runButton: RunButton;
+  controlButtons: Array<ControlButton>;
 
   constructor() {
     this.editor = new DropletWrapper();
     this.view = 'applab';
     this.layout = {
-      leftPanel: ['view'],
+      leftPanel: ['view', 'controlBar'],
       rightPanel: ['instructions', 'editor', 'console']
     };
     this.type = 'Applab';
-    this.onRun = () => console.log('running');
+    this.runButton = {
+      onRun: () => console.log('running'),
+      onStop: () => console.log('stopping'),
+      runText: 'run',
+      stopText: 'stop'
+    }
+    this.controlButtons = ['run'];
   }
 }
 
@@ -40,22 +48,33 @@ export class Javalab implements Lab {
   layout: LabLayout;
   type: AppType;
   javaRunner: JavaRunner;
-  onRun: () => void;
+  runButton: RunButton;
+  controlButtons: Array<ControlButton>;
 
   constructor(viewType: JavalabView) {
     this.editor = new CodeMirrorWrapper();
     this.view = viewType;
     this.layout = {
       leftPanel: ['instructions', 'view'],
-      rightPanel: ['editor', 'console']
+      rightPanel: ['editor', 'console', 'controlBar']
     };
     this.type = 'Javalab';
     this.javaRunner = new JavaRunner();
-    this.onRun = this.runButtonClick;
+    this.runButton = {
+      onRun: this.runButtonClick.bind(this),
+      onStop: this.stopButtonClick.bind(this),
+      runText: 'run',
+      stopText: 'stop'
+    };
+    this.controlButtons = ['run'];
   }
 
   runButtonClick() {
     this.javaRunner.run();
+  }
+
+  stopButtonClick() {
+    this.javaRunner.stop();
   }
 }
 
@@ -70,7 +89,12 @@ export interface LabLayout {
   rightPanel: Array<LabComponent>;
 }
 
-export type LabComponent = 'editor' | 'console' | 'view' | 'instructions';
+export type LabComponent =
+  | 'editor'
+  | 'console'
+  | 'view'
+  | 'instructions'
+  | 'controlBar';
 
 export type Level = AppLabLevel | JavaLabLevel;
 
@@ -127,3 +151,12 @@ export interface LevelProperties {
 }
 
 type trueFalseString = 'true' | 'false';
+
+type ControlButton = 'run';
+
+interface RunButton {
+  onRun: () => void;
+  onStop: () => void;
+  runText: string;
+  stopText: string;
+}

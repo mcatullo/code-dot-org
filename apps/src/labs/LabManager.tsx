@@ -14,6 +14,8 @@ import ApplabEditor from './editors/ApplabEditor';
 import {CodeMirrorWrapper} from './editors/codemirror/CodeMirrorWrapper';
 import {DropletWrapper} from './editors/droplet/DropletWrapper';
 import {convertLevel, getLabForLevel} from './middleware/labHelpers';
+import RunButton from './controls/RunButton';
+import ControlBar from './controls/ControlBar';
 const {getStore, registerReducers} = require('../redux');
 
 export default function init(level: RawLevel) {
@@ -75,6 +77,9 @@ function generateLayoutComponents(
         } else if (lab.view === 'applab') {
           components.push(<ApplabVisualization />);
         }
+        break;
+      case 'controlBar':
+        components.push(generateControlBar(lab));
     }
   });
   return components;
@@ -86,4 +91,22 @@ function registerReduxSlices() {
     javalabV2: javalabReducer,
     labs: commonReducer
   });
+}
+
+function generateControlBar(lab: Lab): JSX.Element {
+  const buttons = lab.controlButtons.map((button, index) => {
+    switch (button) {
+      case 'run':
+        return (
+          <RunButton
+            key={index}
+            onRun={lab.runButton.onRun}
+            onStop={lab.runButton.onStop}
+            runText={lab.runButton.runText}
+            stopText={lab.runButton.stopText}
+          />
+        );
+    }
+  });
+  return <ControlBar>{buttons}</ControlBar>;
 }
