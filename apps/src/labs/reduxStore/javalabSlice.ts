@@ -3,7 +3,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export interface JavalabState {
   sources: {
     [filename: string]: {
-      text: String;
+      text: string;
       isVisible: boolean;
       isValidation: boolean | undefined;
       tabOrder: number;
@@ -26,7 +26,7 @@ export const javalabSlice = createSlice({
   name: 'javalabV2',
   initialState: initialState,
   reducers: {
-    setSourceText: (state, action: PayloadAction<String>) => {
+    setSourceText: (state, action: PayloadAction<string>) => {
       state.sources['MyClass.java'].text = action.payload;
     }
   }

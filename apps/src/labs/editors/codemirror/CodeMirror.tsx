@@ -55,14 +55,6 @@ const CodeMirror = () => {
   }
 
   return <div ref={codeMirrorInstance} className="codemirror-container" />;
-  //<div className="editor">This is code mirror!</div>;
 };
 
 export default CodeMirror;
-
-/*
-  useEffect(() => {
-    if (ref.current) {
-      droplet.render(ref.current);
-    }
-  }, [ref, droplet]);*/
