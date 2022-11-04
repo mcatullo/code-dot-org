@@ -1,11 +1,11 @@
+import { Applab } from '../configurations/applab';
+import { Javalab } from '../configurations/javalab';
 import {
   RawLevel,
   Level,
   CommonLevelProperties,
   JavalabView,
-  Lab,
-  Applab,
-  Javalab
+  Lab
 } from '../types';
 
 export function convertLevel(rawLevel: RawLevel): Level {
