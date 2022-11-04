@@ -1,4 +1,4 @@
-import {Lab, Level, LabComponent, RawLevel} from './types';
+import {Lab, Level, LabComponent, RawLevel, AppOptions} from './types';
 import CodeMirror from './editors/codemirror/CodeMirror';
 import React from 'react';
 import Instructions from './Instructions';
@@ -18,7 +18,7 @@ import RunButton from './controls/RunButton';
 import ControlBar from './controls/ControlBar';
 const {getStore, registerReducers} = require('../redux');
 
-export default function init(level: RawLevel) {
+export default function init(level: RawLevel, appOptions: AppOptions) {
   const convertedLevel = convertLevel(level);
   const lab = getLabForLevel(convertedLevel);
   registerReduxSlices();

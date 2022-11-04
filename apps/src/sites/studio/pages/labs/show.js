@@ -7,9 +7,9 @@ import initLab from '../../../../labs/LabManager';
 
 $(document).ready(function() {
   const level = getScriptData('level');
-  // const appOptions = getScriptData('appOptions');
-  // console.log(appOptions);
-  const labView = initLab(level);
+  const appOptions = getScriptData('appOptions');
+  console.log(appOptions);
+  const labView = initLab(level, appOptions);
 
   ReactDOM.render(
     <Provider store={getStore()}>{labView}</Provider>,

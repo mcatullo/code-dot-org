@@ -169,3 +169,33 @@ export interface ReduxStore {
   javalabV2: JavalabState;
   labs: CommonState;
 }
+
+export interface AppOptions {
+  app: 'javalab' | 'applab';
+  authoredHintViewRequestsUrl: string;
+  backpackChannel: string;
+  backpackEnabled: boolean;
+  baseUrl: string;
+  callouts: Array<string>;
+  channel: string;
+  dialog: any;
+  displayTheme: 'light' | 'dark' | undefined;
+  experiments: Array<string>;
+  hasContainedLevels: boolean;
+  hasOpenCodeReview: boolean;
+  is13Plus: boolean;
+  isViewingOwnProject: boolean;
+  level: any;
+  levelRequiresChannel: boolean;
+  muteMusic: boolean;
+  postMilestoneMode: string;
+  puzzleRatingsUrl: string;
+  reduceChannelUpdates: boolean;
+  report: any;
+  serverLevelId: number;
+  teacherMarkdown: string;
+  textToSpeechEnabled: boolean;
+  userId: number;
+  userSharingDisabled: boolean;
+  usngTextModePref: boolean;
+}
