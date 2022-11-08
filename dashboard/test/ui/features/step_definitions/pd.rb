@@ -1,4 +1,5 @@
 Given(/^I am a workshop administrator with some applications of each type and status$/) do
+  puts "inside workshop admin step"
   random_name = "TestWorkshopAdmin" + SecureRandom.hex(10)
   steps %Q{
     And I create a teacher named "#{random_name}"
