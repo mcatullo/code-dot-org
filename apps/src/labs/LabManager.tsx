@@ -17,14 +17,20 @@ import {convertLevel, getLabForLevel} from './middleware/labHelpers';
 import RunButton from './controls/RunButton';
 import ControlBar from './controls/ControlBar';
 import {StartModeDecorator} from './configurations/StartModeDecorator';
+import StartModeHeader from './StartModeHeader';
 const {getStore, registerReducers} = require('../redux');
 
 export default function init(level: RawLevel, appOptions: AppOptions) {
+  // get lab configuration
   const convertedLevel = convertLevel(level);
-  var lab = getLabForLevel(convertedLevel);
+  let lab = getLabForLevel(convertedLevel);
   lab = addDecorators(lab, appOptions);
+
+  // set up state
   registerReduxSlices();
   initializeState(convertedLevel);
+
+  // set up visuals
   const leftPanels = generateLayoutComponents(
     lab.getLayout().leftPanel,
     lab,
@@ -35,7 +41,10 @@ export default function init(level: RawLevel, appOptions: AppOptions) {
     lab,
     convertedLevel
   );
-  return <LabView leftPanels={leftPanels} rightPanels={rightPanels} />;
+  let view = <LabView leftPanels={leftPanels} rightPanels={rightPanels} />;
+  // add any visual wrappers and return
+  view = wrapView(view, appOptions);
+  return view;
 }
 
 function initializeState(level: Level) {
@@ -106,6 +115,10 @@ function generateControlBar(lab: Lab): JSX.Element {
   return <ControlBar>{buttons}</ControlBar>;
 }
 
+// Decorators for managing non-default functionality and
+// wrappers for managing non-default visuals. Can we do this is one so we
+// don't need to check isStartMode twice???
+
 function addDecorators(lab: Lab, appOptions: AppOptions): Lab {
   var labToReturn = lab;
   if (appOptions.isStartMode) {
@@ -113,4 +126,11 @@ function addDecorators(lab: Lab, appOptions: AppOptions): Lab {
   }
   // if we want to do more decorators (readonly??) we can pass labToReturn to successize decorators
   return labToReturn;
+}
+
+function wrapView(view: JSX.Element, appOptions: AppOptions): JSX.Element {
+  if (appOptions.isStartMode) {
+    view = <StartModeHeader>{view}</StartModeHeader>;
+  }
+  return view;
 }
