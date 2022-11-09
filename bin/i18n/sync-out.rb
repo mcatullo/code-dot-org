@@ -445,6 +445,7 @@ def distribute_translations(upload_manifests)
       next unless file_changed?(locale, relative_path)
 
       destination_dir = "pegasus/sites.v3/code.org/i18n/public"
+      destination_dir << "/.." if relative_path.start_with? "/views"
       relative_dir = File.dirname(relative_path)
       name = File.basename(loc_file, ".*")
       destination = File.join(destination_dir, relative_dir, "#{name}.#{locale}.md.partial")

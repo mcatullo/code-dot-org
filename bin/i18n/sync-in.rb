@@ -647,12 +647,16 @@ def localize_markdown_content
     hourofcode/unplugged-conditionals-with-cards.md.partial
     international/about.md.partial
     poetry.md.partial
+    ../views/hoc2022_create_activities.md.partial
+    ../views/hoc2022_play_activities.md.partial
+    ../views/hoc2022_explore_activities.md.partial
   ]
   markdown_files_to_localize.each do |path|
     original_path = File.join('pegasus/sites.v3/code.org/public', path)
     original_path_exists = File.exist?(original_path)
     puts "#{original_path} does not exist" unless original_path_exists
     next unless original_path_exists
+    path = path[3...] if path.start_with? "../"
     # Remove the .partial if it exists
     source_path = File.join(I18N_SOURCE_DIR, 'markdown/public', File.dirname(path), File.basename(path, '.partial'))
     FileUtils.mkdir_p(File.dirname(source_path))
