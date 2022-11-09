@@ -16,11 +16,13 @@ import {DropletWrapper} from './editors/droplet/DropletWrapper';
 import {convertLevel, getLabForLevel} from './middleware/labHelpers';
 import RunButton from './controls/RunButton';
 import ControlBar from './controls/ControlBar';
+import {StartModeDecorator} from './configurations/StartModeDecorator';
 const {getStore, registerReducers} = require('../redux');
 
 export default function init(level: RawLevel, appOptions: AppOptions) {
   const convertedLevel = convertLevel(level);
-  const lab = getLabForLevel(convertedLevel);
+  var lab = getLabForLevel(convertedLevel);
+  lab = addDecorators(lab, appOptions);
   registerReduxSlices();
   initializeState(convertedLevel);
   const leftPanels = generateLayoutComponents(
@@ -102,4 +104,13 @@ function generateControlBar(lab: Lab): JSX.Element {
     }
   });
   return <ControlBar>{buttons}</ControlBar>;
+}
+
+function addDecorators(lab: Lab, appOptions: AppOptions): Lab {
+  var labToReturn = lab;
+  if (appOptions.isStartMode) {
+    labToReturn = new StartModeDecorator(lab);
+  }
+  // if we want to do more decorators (readonly??) we can pass labToReturn to successize decorators
+  return labToReturn;
 }

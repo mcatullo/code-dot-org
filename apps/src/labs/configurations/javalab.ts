@@ -28,8 +28,9 @@ export class Javalab implements Lab {
     this.javaRunner = new JavaRunner();
     this.controlButtons = [
       {
-        toggleOn: this.runButtonClick.bind(this),
-        toggleOff: this.stopButtonClick.bind(this),
+        // still don't love this configuration
+        toggleOn: this.javaRunner.onRun,
+        toggleOff: this.javaRunner.onStop,
         toggleOnText: 'run',
         toggleOffText: 'stop',
         onIcon: undefined,
@@ -62,15 +63,9 @@ export class Javalab implements Lab {
   getControlButtons(): ButtonConfiguration[] {
     return this.controlButtons;
   }
+
+  // is this necessary??
   getRunner(): Runner {
     return this.javaRunner;
-  }
-
-  runButtonClick() {
-    this.javaRunner.onRun();
-  }
-
-  stopButtonClick() {
-    this.javaRunner.onStop();
   }
 }

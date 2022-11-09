@@ -119,6 +119,7 @@ export interface AppOptions {
   hasContainedLevels: boolean;
   hasOpenCodeReview: boolean;
   is13Plus: boolean;
+  isStartMode: boolean;
   isViewingOwnProject: boolean;
   level: any;
   levelRequiresChannel: boolean;

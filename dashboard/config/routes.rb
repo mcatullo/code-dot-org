@@ -1024,5 +1024,6 @@ Dashboard::Application.routes.draw do
 
     # Lab lab prototype
     get '/labs/:level_id', to: 'labs#show'
+    get '/labs/:level_id/start_mode', to: 'labs#start_mode'
   end
 end
