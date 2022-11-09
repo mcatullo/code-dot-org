@@ -5,19 +5,18 @@ import {
   JavalabView,
   LabLayout,
   AppType,
-  RunButton,
-  ControlButton
+  Runner,
+  ButtonConfiguration,
+  Editor,
+  ViewType
 } from '../types';
 
 export class Javalab implements Lab {
   editor: CodeMirrorWrapper;
-  hasConsole = true;
   view: JavalabView;
   layout: LabLayout;
-  type: AppType;
-  javaRunner: JavaRunner;
-  runButton: RunButton;
-  controlButtons: Array<ControlButton>;
+  javaRunner: Runner;
+  controlButtons: Array<ButtonConfiguration>;
 
   constructor(viewType: JavalabView) {
     this.editor = new CodeMirrorWrapper();
@@ -26,22 +25,52 @@ export class Javalab implements Lab {
       leftPanel: ['instructions', 'view'],
       rightPanel: ['editor', 'console', 'controlBar']
     };
-    this.type = 'Javalab';
     this.javaRunner = new JavaRunner();
-    this.runButton = {
-      onRun: this.runButtonClick.bind(this),
-      onStop: this.stopButtonClick.bind(this),
-      runText: 'run',
-      stopText: 'stop'
-    };
-    this.controlButtons = ['run'];
+    this.controlButtons = [
+      {
+        toggleOn: this.runButtonClick.bind(this),
+        toggleOff: this.stopButtonClick.bind(this),
+        toggleOnText: 'run',
+        toggleOffText: 'stop',
+        onIcon: undefined,
+        offIcon: undefined,
+        type: 'run'
+      }
+    ];
+  }
+
+  getEditor(): Editor {
+    return this.editor;
+  }
+
+  hasConsole(): boolean {
+    return true;
+  }
+
+  getView(): ViewType {
+    return this.view;
+  }
+
+  getLayout(): LabLayout {
+    return this.layout;
+  }
+
+  getType(): AppType {
+    return 'Javalab';
+  }
+
+  getControlButtons(): ButtonConfiguration[] {
+    return this.controlButtons;
+  }
+  getRunner(): Runner {
+    return this.javaRunner;
   }
 
   runButtonClick() {
-    this.javaRunner.run();
+    this.javaRunner.onRun();
   }
 
   stopButtonClick() {
-    this.javaRunner.stop();
+    this.javaRunner.onStop();
   }
 }

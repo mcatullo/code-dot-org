@@ -24,12 +24,12 @@ export default function init(level: RawLevel, appOptions: AppOptions) {
   registerReduxSlices();
   initializeState(convertedLevel);
   const leftPanels = generateLayoutComponents(
-    lab.layout.leftPanel,
+    lab.getLayout().leftPanel,
     lab,
     convertedLevel
   );
   const rightPanels = generateLayoutComponents(
-    lab.layout.rightPanel,
+    lab.getLayout().rightPanel,
     lab,
     convertedLevel
   );
@@ -50,36 +50,30 @@ function generateLayoutComponents(
   level: Level
 ) {
   let components: Array<JSX.Element> = [];
-  panelList.forEach((panel, index) => {
-    switch (panel) {
-      case 'editor':
-        if (lab.editor instanceof CodeMirrorWrapper) {
-          components.push(<CodeMirror />);
-        } else if (lab.editor instanceof DropletWrapper) {
-          components.push(<ApplabEditor dropletWrapper={lab.editor} />);
-        }
-        break;
-      case 'console':
-        components.push(<Console />);
-        break;
-      case 'instructions':
-        if (level.longInstructions) {
-          components.push(
-            <Instructions instructions={level.longInstructions} />
-          );
-        }
-        break;
-      case 'view':
-        if (lab.view === 'neighborhood') {
-          components.push(<NeighborhoodVisualization />);
-        } else if (lab.view === 'theater') {
-          components.push(<TheaterVisualization />);
-        } else if (lab.view === 'applab') {
-          components.push(<ApplabVisualization />);
-        }
-        break;
-      case 'controlBar':
-        components.push(generateControlBar(lab));
+  panelList.forEach(panel => {
+    if (panel === 'editor') {
+      const editor = lab.getEditor();
+      if (editor instanceof CodeMirrorWrapper) {
+        components.push(<CodeMirror />);
+      } else if (editor instanceof DropletWrapper) {
+        components.push(<ApplabEditor dropletWrapper={editor} />);
+      }
+    } else if (panel === 'console') {
+      components.push(<Console />);
+    } else if (panel === 'instructions') {
+      if (level.longInstructions) {
+        components.push(<Instructions instructions={level.longInstructions} />);
+      }
+    } else if (panel === 'view') {
+      if (lab.getView() === 'neighborhood') {
+        components.push(<NeighborhoodVisualization />);
+      } else if (lab.getView() === 'theater') {
+        components.push(<TheaterVisualization />);
+      } else if (lab.getView() === 'applab') {
+        components.push(<ApplabVisualization />);
+      }
+    } else if (panel === 'controlBar') {
+      components.push(generateControlBar(lab));
     }
   });
   return components;
@@ -94,18 +88,17 @@ function registerReduxSlices() {
 }
 
 function generateControlBar(lab: Lab): JSX.Element {
-  const buttons = lab.controlButtons.map((button, index) => {
-    switch (button) {
-      case 'run':
-        return (
-          <RunButton
-            key={index}
-            onRun={lab.runButton.onRun}
-            onStop={lab.runButton.onStop}
-            runText={lab.runButton.runText}
-            stopText={lab.runButton.stopText}
-          />
-        );
+  const buttons = lab.getControlButtons().map((button, index) => {
+    if (button.type === 'run') {
+      return (
+        <RunButton
+          key={index}
+          onRun={button.toggleOn}
+          onStop={button.toggleOff}
+          runText={button.toggleOnText}
+          stopText={button.toggleOffText}
+        />
+      );
     }
   });
   return <ControlBar>{buttons}</ControlBar>;

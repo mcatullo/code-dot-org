@@ -6,13 +6,13 @@ import {JavalabState} from './reduxStore/javalabSlice';
 export type Editor = CodeMirrorWrapper | DropletWrapper;
 
 export interface Lab {
-  editor: Editor;
-  hasConsole: boolean;
-  view: ViewType;
-  layout: LabLayout;
-  type: AppType;
-  runButton: RunButton;
-  controlButtons: Array<ControlButton>;
+  getEditor(): Editor;
+  hasConsole(): boolean;
+  getView(): ViewType;
+  getLayout(): LabLayout;
+  getType(): AppType;
+  getControlButtons(): Array<ButtonConfiguration>;
+  getRunner(): Runner;
 }
 
 export type ViewType = JavalabView | AppLabView;
@@ -89,13 +89,14 @@ export interface LevelProperties {
 
 type trueFalseString = 'true' | 'false';
 
-export type ControlButton = 'run';
-
-export interface RunButton {
-  onRun: () => void;
-  onStop: () => void;
-  runText: string;
-  stopText: string;
+export interface ButtonConfiguration {
+  toggleOn: () => void;
+  toggleOff: () => void;
+  toggleOnText: string;
+  toggleOffText: string;
+  onIcon: string | undefined;
+  offIcon: string | undefined;
+  type: 'run' | 'other';
 }
 
 export interface ReduxStore {
@@ -132,4 +133,9 @@ export interface AppOptions {
   userId: number;
   userSharingDisabled: boolean;
   usngTextModePref: boolean;
+}
+
+export interface Runner {
+  onRun(): void;
+  onStop(): void;
 }

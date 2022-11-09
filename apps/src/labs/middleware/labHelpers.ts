@@ -1,5 +1,5 @@
-import { Applab } from '../configurations/applab';
-import { Javalab } from '../configurations/javalab';
+import {Applab} from '../configurations/Applab';
+import {Javalab} from '../configurations/Javalab';
 import {
   RawLevel,
   Level,

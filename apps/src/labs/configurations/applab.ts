@@ -1,36 +1,63 @@
 import {DropletWrapper} from '../editors/droplet/DropletWrapper';
 import {
   Lab,
-  AppLabView,
   LabLayout,
   AppType,
-  RunButton,
-  ControlButton
+  ButtonConfiguration,
+  Editor,
+  Runner,
+  ViewType
 } from '../types';
 
 export class Applab implements Lab {
   editor: DropletWrapper;
-  hasConsole = true;
-  view: AppLabView;
   layout: LabLayout;
-  type: AppType;
-  runButton: RunButton;
-  controlButtons: Array<ControlButton>;
+  controlButtons: Array<ButtonConfiguration>;
 
   constructor() {
     this.editor = new DropletWrapper();
-    this.view = 'applab';
     this.layout = {
       leftPanel: ['view', 'controlBar'],
       rightPanel: ['instructions', 'editor', 'console']
     };
-    this.type = 'Applab';
-    this.runButton = {
-      onRun: () => console.log('running'),
-      onStop: () => console.log('stopping'),
-      runText: 'run',
-      stopText: 'stop'
-    };
-    this.controlButtons = ['run'];
+    this.controlButtons = [
+      {
+        toggleOn: () => console.log('running'),
+        toggleOff: () => console.log('stopping'),
+        toggleOnText: 'run',
+        toggleOffText: 'stop',
+        onIcon: undefined,
+        offIcon: undefined,
+        type: 'run'
+      }
+    ];
+  }
+
+  getEditor(): Editor {
+    return this.editor;
+  }
+
+  hasConsole(): boolean {
+    return true;
+  }
+
+  getView(): ViewType {
+    return 'applab';
+  }
+
+  getLayout(): LabLayout {
+    return this.layout;
+  }
+
+  getType(): AppType {
+    return 'Applab';
+  }
+
+  getControlButtons(): ButtonConfiguration[] {
+    return this.controlButtons;
+  }
+
+  getRunner(): Runner {
+    throw new Error('Method not implemented.');
   }
 }
