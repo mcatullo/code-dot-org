@@ -64,7 +64,7 @@ export class Javalab implements Lab {
     return this.controlButtons;
   }
 
-  // is this necessary??
+  // is this necessary?
   getRunner(): Runner {
     return this.javaRunner;
   }

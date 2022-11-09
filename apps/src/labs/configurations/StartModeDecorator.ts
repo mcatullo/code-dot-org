@@ -10,8 +10,8 @@ export class StartModeDecorator extends LabDecorator {
     super(lab);
     // can we do overrides like this for everything start mode requires?
     // turn off autosave, override asset upload url--> probably
-    // add header bar --> maybe goes somewhere else??
-    // Todo: can we move this out of the constructor??
+    // add header bar --> currently done separately
+    // Can we move this out of the constructor?
     if (super.getType() === 'Javalab') {
       this.runner = new StartModeJavaRunner();
     } else {
